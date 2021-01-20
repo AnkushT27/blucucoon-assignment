@@ -31,17 +31,24 @@ export class AppComponent implements OnInit{
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
-    moveItemInArray(this.moviesSelected, event.previousIndex, event.currentIndex);
+    //moveItemInArray(this.moviesSelected, event.previousIndex, event.currentIndex);
+    this.reorderData();
+    
   }
 
   eventCheck(event:any,i:number){
     if(event.target.checked){
-      this.moviesSelected.push(this.movies[i])
+      this.moviesSelected.push(this.movies[i]);
+      this.reorderData();
     }
     else{
     this.moviesSelected = this.moviesSelected.filter((data)=>{
-        return data!=this.movies[i]
+       return data!=this.movies[i]
       })
     }
+  }
+
+  reorderData(){
+    this.moviesSelected = this.movies.filter((data)=>this.moviesSelected.includes(data))
   }
 }
