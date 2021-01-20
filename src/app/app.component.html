@@ -5,13 +5,13 @@
 </mat-grid-list>
 <mat-grid-list cols="2" rowHeight="1:1">
   
-  <mat-grid-tile id="movies">
+  <mat-grid-tile id="task">
     
     <div cdkDropList class="example-list col-md-6" (cdkDropListDropped)="drop($event)" >
      
-     <div class="example-box" *ngFor="let movie of movies;let i =index" cdkDrag >
-      <input type="checkbox" id="{{movie+i}}" name="{{movie+i}}" value="{{movie}}" (change)="eventCheck($event,i)"/>
-       <span>{{movie}}</span>
+     <div class="example-box" *ngFor="let task of task;let i =index" cdkDrag >
+      <input type="checkbox" id="{{task+i}}" name="{{task+i}}" value="{{task}}" (change)="eventCheck($event,i)"/>
+       <span>{{task}}</span>
       </div>
     </div>
   </mat-grid-tile>
@@ -19,8 +19,8 @@
   <mat-grid-tile >
  
     <div cdkDropList class="example-list col-md-6" (cdkDropListDropped)="drop($event)" >
-      <div class="example-box-selected" *ngFor="let movie of moviesSelected" cdkDrag >
-     <span>{{movie}}</span>
+      <div class="example-box-selected" *ngFor="let taskdata of tasksSelected" cdkDrag >
+     <span>{{taskdata}}</span>
       </div>
     </div>
   </mat-grid-tile>

@@ -8,11 +8,11 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  movies:Array<String>;
-  moviesSelected:Array<String>;
+  task:Array<String>;
+  tasksSelected:Array<String>;
   constructor(private taskService:AppService){
-    this.movies=[];
-    this.moviesSelected = [];
+    this.task=[];
+    this.tasksSelected = [];
   }
  
   ngOnInit(): void {
@@ -23,14 +23,14 @@ export class AppComponent implements OnInit{
   getTasks(){
     //to unsubscribe after one stream is initiated
     this.taskService.getData().pipe(take(1)).subscribe(({data}:any)=>{
-        this.movies = data;
+        this.task = data;
     })
   }
 
   
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.task, event.previousIndex, event.currentIndex);
     //moveItemInArray(this.moviesSelected, event.previousIndex, event.currentIndex);
     this.reorderData();
     
@@ -38,17 +38,17 @@ export class AppComponent implements OnInit{
 
   eventCheck(event:any,i:number){
     if(event.target.checked){
-      this.moviesSelected.push(this.movies[i]);
+      this.tasksSelected.push(this.task[i]);
       this.reorderData();
     }
     else{
-    this.moviesSelected = this.moviesSelected.filter((data)=>{
-       return data!=this.movies[i]
+    this.tasksSelected = this.tasksSelected.filter((data)=>{
+       return data!=this.task[i]
       })
     }
   }
 
   reorderData(){
-    this.moviesSelected = this.movies.filter((data)=>this.moviesSelected.includes(data))
+    this.tasksSelected = this.task.filter((data)=>this.tasksSelected.includes(data))
   }
 }
