@@ -1,9 +1,9 @@
 
-<mat-grid-list cols="2" rowHeight="1rem">
+<mat-grid-list cols="2" rowHeight="1rem" *ngIf="!errorFlag">
   <mat-grid-tile>Tasks</mat-grid-tile>
   <mat-grid-tile>To Do List</mat-grid-tile>
 </mat-grid-list>
-<mat-grid-list cols="2" rowHeight="1:1">
+<mat-grid-list cols="2" rowHeight="1:1" *ngIf="!errorFlag">
   
   <mat-grid-tile id="task">
     
@@ -25,4 +25,8 @@
     </div>
   </mat-grid-tile>
   
+</mat-grid-list>
+<mat-grid-list cols="1" rowHeight="1rem" *ngIf="errorFlag">
+  <mat-grid-tile>Something went wrong</mat-grid-tile>
+ 
 </mat-grid-list>
